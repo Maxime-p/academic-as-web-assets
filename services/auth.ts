@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth'
-import { router } from 'next/client'
+import { redirect } from 'next/navigation'
 
 import { auth } from '@/services/firebase'
 
@@ -14,9 +14,8 @@ export const signInWithGoogle = () => {
       // The signed-in user info.
       const user = result.user
       if (user) {
-        void router.push('/admin')
+        redirect('/admin')
       }
-      return false
     })
     .catch((error) => {
       // Handle Errors here.
@@ -26,7 +25,6 @@ export const signInWithGoogle = () => {
       const email = error.email
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error)
-      return false
     })
 }
 
