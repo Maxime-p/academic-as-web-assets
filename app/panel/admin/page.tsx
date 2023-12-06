@@ -16,6 +16,7 @@ interface FormData {
   team3Score: number
   team4Name: string
   team4Score: number
+  active: boolean
 }
 
 export default function AdminPage() {
@@ -31,6 +32,11 @@ export default function AdminPage() {
           team2Name: data.TeamB.name,
           team1Score: data.TeamA.score,
           team2Score: data.TeamB.score,
+          team3Name: data.TeamC.name,
+          team4Name: data.TeamD.name,
+          team3Score: data.TeamC.score,
+          team4Score: data.TeamD.score,
+          active: data.active,
         })
       }
     })
@@ -46,6 +52,15 @@ export default function AdminPage() {
         name: data.team2Name,
         score: data.team2Score,
       },
+      TeamC: {
+        name: data.team3Name,
+        score: data.team3Score,
+      },
+      TeamD: {
+        name: data.team4Name,
+        score: data.team4Score,
+      },
+      active: data.active,
     })
   }
 
@@ -81,6 +96,7 @@ export default function AdminPage() {
             <input id="team4Score" {...register('team4Score')} />
           </div>
         </div>
+        <input type="checkbox" {...register('active')} />
         <button className="mt-4" type="submit">
           Submit
         </button>

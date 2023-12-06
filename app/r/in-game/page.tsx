@@ -22,10 +22,34 @@ export default function InGamePage() {
 
   return (
     <>
-      <div className="absolute top-0 left-0">{data?.TeamA.name}</div>
-      <div className="absolute top-0 right-0">{data?.TeamB.name}</div>
-      <div className="absolute bottom-0 left-0">{data?.TeamC.name}</div>
-      <div className="absolute bottom-0 right-0">{data?.TeamD.name}</div>
+      <div
+        className={`absolute top-0 left-0 -translate-x-full text-4xl font-bold text-white bg-red-400 entering-left ${
+          data?.active ? 'active' : ''
+        }`}
+      >
+        {data?.TeamA?.name}
+      </div>
+      <div
+        className={`absolute top-0 right-0 translate-x-full text-4xl font-bold text-white bg-red-400 entering-right ${
+          data?.active ? 'active' : ''
+        }`}
+      >
+        {data?.TeamB?.name}
+      </div>
+      <div
+        className={`absolute bottom-0 left-0 -translate-x-full text-4xl font-bold text-white bg-red-400 entering-left ${
+          data?.active ? 'active' : ''
+        }`}
+      >
+        {data?.TeamC?.name}
+      </div>
+      <div
+        className={`absolute bottom-0 right-0 translate-x-full text-4xl font-bold text-white bg-red-400 entering-right ${
+          data?.active ? 'active' : ''
+        }`}
+      >
+        {data?.TeamD?.name}
+      </div>
     </>
   )
 }

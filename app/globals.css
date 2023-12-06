@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Animation */
+
+
+.entering-left, .entering-right {
+  transition-duration: 1s;
+}
+
+.entering-left.active {
+  transform: translateX(0);
+}
+
+.entering-right.active {
+  transform: translateX(0);
+}

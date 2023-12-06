@@ -8,4 +8,5 @@ export interface DBData {
   TeamB: Team
   TeamC: Team
   TeamD: Team
+  active: boolean
 }
