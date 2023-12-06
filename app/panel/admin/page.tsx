@@ -1,20 +1,40 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { ref, set } from '@firebase/database'
+import { onValue, ref, set } from '@firebase/database'
 
 import { rtdb } from '@/services'
 
 interface FormData {
   team1Name: string
-  team2Name: string
   team1Score: number
+  team2Name: string
   team2Score: number
+  team3Name: string
+  team3Score: number
+  team4Name: string
+  team4Score: number
 }
 
 export default function AdminPage() {
-  const { register, handleSubmit } = useForm<FormData>()
+  const { register, handleSubmit, reset } = useForm<FormData>()
+
+  useEffect(() => {
+    return onValue(ref(rtdb, 'currentMatch'), (snapshot) => {
+      const data = snapshot.val()
+
+      if (snapshot.exists()) {
+        reset({
+          team1Name: data.TeamA.name,
+          team2Name: data.TeamB.name,
+          team1Score: data.TeamA.score,
+          team2Score: data.TeamB.score,
+        })
+      }
+    })
+  }, [])
 
   const formSubmit = async (data: FormData) => {
     await set(ref(rtdb, 'currentMatch'), {
@@ -47,6 +67,18 @@ export default function AdminPage() {
             <input id="team2Name" {...register('team2Name')} />
             <label htmlFor="team2Score">Team 2 Score</label>
             <input id="team2Score" {...register('team2Score')} />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="team3Name">Team 3 Name</label>
+            <input id="team3Name" {...register('team3Name')} />
+            <label htmlFor="team3Score">Team 3 Score</label>
+            <input id="team3Score" {...register('team3Score')} />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="team4Name">Team 4 Name</label>
+            <input id="team4Name" {...register('team4Name')} />
+            <label htmlFor="team4Score">Team 4 Score</label>
+            <input id="team4Score" {...register('team4Score')} />
           </div>
         </div>
         <button className="mt-4" type="submit">
