@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { onValue, ref } from '@firebase/database'
 
-import { rtdb } from '@/services'
+import { rtdb } from '@/services/firebase'
 
 export default function RPage() {
   const [data, setData] = useState({})

@@ -1,7 +1,6 @@
 import { getDatabase } from '@firebase/database'
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -15,12 +14,9 @@ const firebaseConfig = {
 
 // Initialize Firestore
 const app = initializeApp(firebaseConfig)
-export const firestore = getFirestore(app)
 
 // Initialize Auth
-export const auth = getAuth()
+export const auth = getAuth(app)
 
 // Initialize Realtime DB
-
-const rtApp = initializeApp(firebaseConfig, 'rtdb')
-export const rtdb = getDatabase(rtApp)
+export const rtdb = getDatabase(app)

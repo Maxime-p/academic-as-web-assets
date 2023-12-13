@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 
 import { onValue, ref, set } from '@firebase/database'
 
-import { rtdb } from '@/services'
+import { rtdb } from '@/services/firebase'
 
 interface FormData {
   team1Name: string
